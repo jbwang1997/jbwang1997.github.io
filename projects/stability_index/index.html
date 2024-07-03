@@ -232,23 +232,21 @@
       <div class="column ">
         <div class="content" style="text-align:center;">
 
-          <h2 class="title is-3 has-text-centered">🚀 Methodology</h2>
-          <h2 class="title is-4"> Prediction Consistency Learning </h2>
-          <img src="images/structure.png" class="" style="width: 90%;margin-bottom: 2%;">
-          
-          <p style="text-align:center;" class="has-text-justified">
-            Most SOTA depth estimation architectures are bottlenecked by the resolution capabilities of their backbone, leading to blur depth predictions. For instance, ZoeDepth processes an input resolution of 384x512, VPD manages 480x480, and AiT is designed for 384x512. These figures pale in comparison to the resolutions offered by modern consumer cameras, such as the 45 Megapixel Canon EOS R5, the widely available 8K televisions, and even mobile devices like the iPhone 15, which boasts a 12MP Ultra Wide lens.
-          </p>
-          <p style="text-align:center;" class="has-text-justified">
-            In this work, we make effort to addresses the challenge of metric single image depth estimation for high-resolution inputs. We propose an end-to-end tile-based framework to achieve our goal.
-            It includes a <b>(1)</b> Coarse Network to provide global scale-aware estimation based on whole-image inpus, whereas high-frequency details are lost at the cost of global consistency, a <b>(2)</b> Fine Network to achieve patch-wise fine depth prediction with rich details, particularly at boundaries and intricate structure, but scale potentially inconsistent with the actual scene due to the segment property and lack of global information, and a <b>(3)</b> Guided Fusion Network with Global-to-Local (G2L) module to combine the best of two worlds.
-            We also propose the consistency-aware training and inference strategy to ensure patch-wise prediction consistency.
-          </p>
+          <h2 class="title is-3 has-text-centered">🔥 The Importance of Stability Issues</h2>
+
+            <img src="images/issues.png" class="" style="width: 90%;margin-bottom: 2%;">
+
+            <p style="text-align:center;" class="has-text-justified">
+              Detection stability encompasses more than mere robustness; it extends to the broader context of ensuring human safety in autonomous driving. 
+              As exemplified in the above figures, unstable detections, on both confidence scores and bounding boxes, can result in abnormal velocity estimated by tracking.
+              These erroneous estimations may trigger false judgement on the behaviors of surrounding agents, potentially misleading the ego-vehicle to make improper or even hazardous decisions.
+              In addition, systematically complementing poor detection stability requires extra modules (e.g., Kalman filters with carefully and usually manually tuned parameters).
+              This not only increases system complexity and latency, but also necessitates tedious engineering efforts.
+              As a conclusion, enhancing detection stability is a crucial step towards safe and reliable autonomous driving.
+            </p>
         </div>
-        
       </div>
     </div>
-
   </div>
 </section>
 
@@ -256,38 +254,59 @@
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
-      <!-- Visual Effects. -->
-      <div class="column">
+      <div class="column ">
         <div class="content" style="text-align:center;">
-          <h2 class="title is-3 has-text-centered">🔥 Method</h2>
-          <p style="text-align:center;" class="has-text-justified">
-          We propose to adopt a neural network to fuse the coarse and fine depth maps, which outperforms the traditional post-optimization strategies.
-          While it could be implemented by simply learning a pix2pix U-Net, our key idea is to exploit the multi-scale features from the Coarse Network and Fine Network. 
-          We use two main components to achieve this transfer - the Global-to-Local Module (G2L) and the Guided Fusion Network.
-          </p>
-          <img src="images/fusion_net.jpg" class="" style="width: 80%;margin-bottom: 2%;">
-          <h2 class="title is-4"> Global-to-Local Module and Guided Fusion Network </h2>
-          <p style="text-align:center;" class="has-text-justified">
-          While the key insight of G2L is to apply the global-wise self attention for each-level feature from Coarse Network to ensemble crucial information for patch-wise scale-consistent prediction, 
-          we adopt the Swin Transformer Layer (STL) to preserve the global context while simultaneously alleviating GPU memory concerns.
-          </p>
-          <p style="text-align:center;" class="has-text-justified">
-          The Guided Fusion Network follows the U-Net design. The input comprises a concatenated ensemble of the cropped original image, the corresponding cropped coarse depth estimations from Coarse Network, and fine depth estimations from Fine Network.
-          After a lightweight encoder, we inject the guidance features to the skip connections and decoder layers.
+
+          <h2 class="title is-3 has-text-centered">🚀 3D Detection Stability Evaluation and Improvment</h2>
+
+          <h2 class="title is-4"> Principles in Stability Metric Design</h2>
+
+          <p style="text-align:center" class="has-text-justified">
+            Through the detailed analysis of stability and exploration of potential solutions, we identify four key properties that an effective metric should meet:
+            <ul style="text-align:left">
+              <li> <i><b>Comprehensiveness:</b></i> The metric should comprehensively reflect influences from all relevant detection elements. </li>
+              <li> <i><b>Homogeneity:</b></i> Influences caused by all elements should be well-processed into unified physical units. </li>
+              <li> <i><b>Symmetry:</b></i> The metric values should be consistent when applied to both forward and reverse inputs. </li>
+              <li> <i><b>Marginal Unimodality:</b></i> For each element with others fixed, the metric should be unimodal w.r.t. its stability. </li>
+            </ul>
           </p>
 
-          <h2 class="title is-4">Consistency-Aware Training and Inference</h2>
-          <video style="width: 80%; margin-bottom: 2%;" controls>
-            <source src="images/cai.mp4" type=video/mp4>
-          </video>
+          <h2 class="title is-4"> Stability Index </h2>
+
+          <p style="text-align:center" class="has-text-justified">
+            While the IoU is a promising starting point, meeting the four properties de mands careful designs to effectively integrate the confidence score and address the asymmetry and non-unimodality design flows.
+            To this end, we introduce schemes of projection with pivot boxes, element decoupling, and stability aggregation, as illustrated in the below figure.
+            Ultimately, we assess the stability of object pairs in consecutive frames and denote the metric as <b>Stability Index (SI)</b>.
+          </p>
+
+          <img src="images/si_calculation.png" class="" style="width: 90%;margin-bottom: 2%;">
 
           <p style="text-align:center;" class="has-text-justified">
-          While our Guided Fusion Network with G2L makes scale-aware predictions, boundary inconsistencies still exist. Recognizing this gap, we introduce Consistency-Aware Training (CAT) and Inference (CAI) to ensure patch-wise depth prediction consistency.
-
-          Our methodology is based on the intuitive idea that overlapping regions between cropped patches from the same image should ideally produce consistent feature representations and depth predictions. We impose an \( L_2 \) loss on the overlapping regions of both the extracted image features and the depth predictions. While the idea of constraining the depth values is quite intuitive, the good results mainly stem from constraining the features.
-
-          During the inference processing of patches, the updated depth is concatenated with the cropped image and coarse depth map, as the input to our guided fusion network. This dynamic updating, coupled with a running mean, engenders a local ensemble approach, incrementally refining the depth estimations on the fly. This strategy alleviates the inconsistency and further boost the prediction accuracy.
+            In the picture, the orange and blue boxes represent the best matches between the predictions and the ground-truths searched by the Hungarian algorithm.
+            These boxes are subsequently associated across frames using their object ID labels.
+            After projecting predictions into a pre-built pivot box, SI decouples them into element-wise computations, which are then aggregated for the final assessment of detection stability.
+            For the details of the procedure of computing SI, please refer to our paper.
           </p>
+
+          <h2 class="title is-4"> Prediction Consistency Learning </h2>
+
+          <p style="text-align:center;" class="has-text-justified">
+            Beyond the design of the metric, we further attempt to boost the detection stability of 3D object detectors.
+            For this purpose, we introduce a general and effective training strategy named <b>Consistency Learning (PCL)</b>, as illustrated in the below figure.
+            Our PCL is built on the core idea of encouraging prediction consistency across frames under various augmentations and timestamps.
+            It consists of four key stages: neighborhood sampling, prediction pairing, de-augmentation, and prediction consistency loss.
+          </p>
+
+          <img src="images/structure.png" class="" style="width: 90%;margin-bottom: 2%;">
+          
+          <p style="text-align:center;" class="has-text-justified">
+            In each iteration, PCL samples a pair of frames at neighboring timestamps <i>t</i> and <i>t'</i>, and applies augmentations M and M' to the paired samples.
+            GT-prediction matching and cross-frame matching then collaboratively associate the detector's predictions from the same objects between the two frames.
+            After the de-augmentation procedure, PCL calculates the prediction errors in terms of confidence, localization, extent, and heading, which are defined in the object self-coordinate system.
+            Finally, PCL penalizes the error disparities among all prediction pairs to enforce the temporal consistency.
+            In the figure, pred. and aug. represent prediction and augmentation, respectively.
+          </p>
+        </div>
       </div>
     </div>
   </div>
@@ -300,10 +319,79 @@
         <!-- Visual Effects. -->
         <div class="column">
           <div class="content" style="text-align:center;">
-            <h2 class="title is-3 has-text-centered">🚀 Qualitative Results</h2>
-            <img src="images/u4k.jpg" class="" style="width: 100%;margin-bottom: 2%;">
+            <h2 class="title is-3 has-text-centered">📺 Quantitative and Qualitative Results</h2>
+
+            <h2 class="title is-4"> Benchmark on the Waymo Open Dataset </h2>
+
+            <img src="images/benchmark.jpg" class="" style="width: 90%;margin-bottom: 2%;">
+
+            <h2 class="title is-4"> Analysis on the Waymo Open Dataset </h2>
+
+            <img src="images/relationship.png" class="" style="width: 90%;margin-bottom: 2%;">
+
             <p style="text-align:center;" class="has-text-justified">
-            <b>Qualitative results on UnrealStereo4K (first two rows) and MVS-Synth (last two rows). Left to Right:</b> Input, BoostingDepth[27], Graph-DGSR[8], PatchFusion (Ours), GT.
+              The above figure shows how various object properties affect detection stability. We group objects based on specified properties and detect them with CenterPoint.
+              (a) presents a negative relationship between detection stability and object distance, where longer distances correspond to harder objects to learn in general.
+              For all classes, SI increases with the number of object points and becomes saturated when the point number reaches 53, as demonstrated in (b).
+              (c) and (d) further explore the effects of object volumes and length-to-width ratios for vehicles.
+              We find that small vehicles tend to have more stable detection. Vehicles with length-to-width ratios between 2 and 3 exhibit relatively high SI values.
+              This may be attributed to the prevalence of such vehicles in real-world scenarios.
+              Vehicles with larger length-to-width ratios, such as trucks/trams/buses, are relatively scarcer in the dataset, and require larger receptive field requirements, making them more unstable in detection.
+            </p>
+
+            <h2 class="title is-4"> Results of PCL </h2>
+
+            <table align="center" style="width: 90%;margin-bottom: 2%;">
+              <td><img src="images/pcl_tempral.jpg" border="0"></td>
+              <td><img src="images/pcl_ablation.jpg" border="0"></td>
+            </table>
+
+            <h2 class="title is-4"> Visualizations </h2>
+
+            <img src="images/visualization.png" class="" style="width: 90%;margin-bottom: 2%;">
+
+            <p style="text-align:center;" class="has-text-justified">
+              In the above figure, we present visualizations of a few ground-truth data and detection results from three distinct models: the baseline CenterPoint, CenterPoint with 2 frames as input, and our PCL model with n = 16.
+              In the first row, we plot the trends in confidence scores with time changes and find the PCL model exhibits superior capability in suppressing confidence score fluctuations compared to the other two models.
+              For the predicted boxes, PCL also has more stable results than other models.
+              It's noteworthy that our PCL model, despite having a lower mAP compared to the multi-frame version of CenterPoint, significantly outperforms it in terms of SI.
+              This further verifies that detection accuracy and stability capture independent aspects of model performance.
+              These phenomena all demonstrate the effectiveness of PCL in enhancing detection stability.
+              We further visualize the stability of detections in terms of confidence, localization, extent, and heading, as shown in the following table.
+            </p>
+
+            <p style="text-align:center;" class="has-text-justified">
+              We further visualize the stability of detections in terms of confidence, localization, extent, and heading, as shown in the following table.
+            </p>
+
+            <table align="center" style="width: 90%;margin-bottom: 2%;">
+              <tr>
+                <td align="center">Confidence</td>
+                <td align="center">Localization</td>
+              </tr>
+              <tr>
+                <td align="center"> 
+                  <img src="images/demo_confidence.gif">
+                </td>
+                <td align="center">
+                  <img src="images/demo_localization.gif">
+                </td>
+              </tr>
+              <tr>
+                <td align="center">Extent</td>
+                <td align="center">Heading</td>
+              </tr>
+              <tr>
+                <td align="center">
+                  <img src="images/demo_extent.gif">
+                </td>
+                <td align="center">
+                  <img src="images/demo_heading.gif">
+                </td>
+              </tr>
+            </table>
+
+            <p style="text-align:center;" class="has-text-justified">
             </p>
         </div>
       </div>
@@ -315,18 +403,12 @@
     <div class="columns is-centered">
       <div class="column">
         <div class="content">
-          <h2 class="title is-3  has-text-centered">🔥 Citation</h2>
+          <h2 class="title is-3  has-text-centered">📖 Citation</h2>
             <div class="language-css">
             <pre style="">
 <code>
-@article{li2023patchfusion,
-  title={PatchFusion: An End-to-End Tile-Based Framework for High-Resolution Monocular Metric Depth Estimation}, 
-  author={Zhenyu Li and Shariq Farooq Bhat and Peter Wonka},
-  year={2023},
-  eprint={2312.02284},
-  archivePrefix={arXiv},
-  primaryClass={cs.CV}}</code></pre>
-            
+Not yet.
+ </code></pre>
           </div>
         </div>
       </div>
