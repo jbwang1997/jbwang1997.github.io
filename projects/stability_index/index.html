@@ -234,15 +234,12 @@
 
           <h2 class="title is-3 has-text-centered">🔥 The Importance of Stability Issues</h2>
 
-            <img src="images/issues.png" class="" style="width: 90%;margin-bottom: 2%;">
+            <img src="images/issues.png" class="" style="width: 95%;margin-bottom: 2%;">
 
             <p style="text-align:center;" class="has-text-justified">
               Detection stability encompasses more than mere robustness; it extends to the broader context of ensuring human safety in autonomous driving. 
               As exemplified in the above figures, unstable detections, on both confidence scores and bounding boxes, can result in abnormal velocity estimated by tracking.
               These erroneous estimations may trigger false judgement on the behaviors of surrounding agents, potentially misleading the ego-vehicle to make improper or even hazardous decisions.
-              In addition, systematically complementing poor detection stability requires extra modules (e.g., Kalman filters with carefully and usually manually tuned parameters).
-              This not only increases system complexity and latency, but also necessitates tedious engineering efforts.
-              As a conclusion, enhancing detection stability is a crucial step towards safe and reliable autonomous driving.
             </p>
         </div>
       </div>
@@ -274,15 +271,15 @@
           <h2 class="title is-4"> Stability Index </h2>
 
           <p style="text-align:center" class="has-text-justified">
-            While the IoU is a promising starting point, meeting the four properties de mands careful designs to effectively integrate the confidence score and address the asymmetry and non-unimodality design flows.
-            To this end, we introduce schemes of projection with pivot boxes, element decoupling, and stability aggregation, as illustrated in the below figure.
-            Ultimately, we assess the stability of object pairs in consecutive frames and denote the metric as <b>Stability Index (SI)</b>.
+            We assess the stability of object pairs in consecutive frames and denote the metric as <b>Stability Index (SI)</b>.
+            As illustrated in the figure, SI is comprised of three main steps: <b>Matching</b>, <b>Projection</b>, and <b>Decoupling</b>.
           </p>
 
-          <img src="images/si_calculation.png" class="" style="width: 90%;margin-bottom: 2%;">
+          <img src="images/si_calculation.png" class="" style="width: 95%;margin-bottom: 2%;">
+
 
           <p style="text-align:center;" class="has-text-justified">
-            In the picture, the orange and blue boxes represent the best matches between the predictions and the ground-truths searched by the Hungarian algorithm.
+            The orange and blue boxes represent the best matches between the predictions and the ground-truths searched by the Hungarian algorithm.
             These boxes are subsequently associated across frames using their object ID labels.
             After projecting predictions into a pre-built pivot box, SI decouples them into element-wise computations, which are then aggregated for the final assessment of detection stability.
             For the details of the procedure of computing SI, please refer to our paper.
@@ -291,20 +288,19 @@
           <h2 class="title is-4"> Prediction Consistency Learning </h2>
 
           <p style="text-align:center;" class="has-text-justified">
-            Beyond the design of the metric, we further attempt to boost the detection stability of 3D object detectors.
-            For this purpose, we introduce a general and effective training strategy named <b>Consistency Learning (PCL)</b>, as illustrated in the below figure.
-            Our PCL is built on the core idea of encouraging prediction consistency across frames under various augmentations and timestamps.
-            It consists of four key stages: neighborhood sampling, prediction pairing, de-augmentation, and prediction consistency loss.
+            Beyond the design of the metric, we introduce a general and effective training strategy named <b>Consistency Learning (PCL)</b>, to boost the detection stability of 3D object detectors.
           </p>
 
-          <img src="images/structure.png" class="" style="width: 90%;margin-bottom: 2%;">
+          <img src="images/structure.png" class="" style="width: 95%;margin-bottom: 2%;">
+
           
           <p style="text-align:center;" class="has-text-justified">
-            In each iteration, PCL samples a pair of frames at neighboring timestamps <i>t</i> and <i>t'</i>, and applies augmentations M and M' to the paired samples.
+            In each iteration, PCL samples a pair of frames at neighboring timestamps <i>t</i> and <i>t'</i>, and applies augmentations <b>M</b> and <b>M'</b> to the paired samples.
             GT-prediction matching and cross-frame matching then collaboratively associate the detector's predictions from the same objects between the two frames.
             After the de-augmentation procedure, PCL calculates the prediction errors in terms of confidence, localization, extent, and heading, which are defined in the object self-coordinate system.
             Finally, PCL penalizes the error disparities among all prediction pairs to enforce the temporal consistency.
             In the figure, pred. and aug. represent prediction and augmentation, respectively.
+            Please refer to the paper for details.
           </p>
         </div>
       </div>
@@ -323,13 +319,13 @@
 
             <h2 class="title is-4"> Benchmark on the Waymo Open Dataset </h2>
 
-            <img src="images/benchmark.jpg" class="" style="width: 90%;margin-bottom: 2%;">
+            <img src="images/benchmark.jpg" class="" style="width: 95%;margin-bottom: 2%;">
 
             <h2 class="title is-4"> Analysis on the Waymo Open Dataset </h2>
 
-            <img src="images/relationship.png" class="" style="width: 90%;margin-bottom: 2%;">
+            <img src="images/relationship.png" class="" style="width: 95%;margin-bottom: 2%;">
 
-            <p style="text-align:center;" class="has-text-justified">
+            <!-- <p style="text-align:center;" class="has-text-justified">
               The above figure shows how various object properties affect detection stability. We group objects based on specified properties and detect them with CenterPoint.
               (a) presents a negative relationship between detection stability and object distance, where longer distances correspond to harder objects to learn in general.
               For all classes, SI increases with the number of object points and becomes saturated when the point number reaches 53, as demonstrated in (b).
@@ -337,20 +333,20 @@
               We find that small vehicles tend to have more stable detection. Vehicles with length-to-width ratios between 2 and 3 exhibit relatively high SI values.
               This may be attributed to the prevalence of such vehicles in real-world scenarios.
               Vehicles with larger length-to-width ratios, such as trucks/trams/buses, are relatively scarcer in the dataset, and require larger receptive field requirements, making them more unstable in detection.
-            </p>
+            </p> -->
 
             <h2 class="title is-4"> Results of PCL </h2>
 
-            <table align="center" style="width: 90%;margin-bottom: 2%;">
+            <table align="center" style="width: 95%;margin-bottom: 2%;">
               <td><img src="images/pcl_tempral.jpg" border="0"></td>
               <td><img src="images/pcl_ablation.jpg" border="0"></td>
             </table>
 
             <h2 class="title is-4"> Visualizations </h2>
 
-            <img src="images/visualization.png" class="" style="width: 90%;margin-bottom: 2%;">
+            <img src="images/visualization.png" class="" style="width: 95%;margin-bottom: 2%;">
 
-            <p style="text-align:center;" class="has-text-justified">
+            <!-- <p style="text-align:center;" class="has-text-justified">
               In the above figure, we present visualizations of a few ground-truth data and detection results from three distinct models: the baseline CenterPoint, CenterPoint with 2 frames as input, and our PCL model with n = 16.
               In the first row, we plot the trends in confidence scores with time changes and find the PCL model exhibits superior capability in suppressing confidence score fluctuations compared to the other two models.
               For the predicted boxes, PCL also has more stable results than other models.
@@ -358,13 +354,13 @@
               This further verifies that detection accuracy and stability capture independent aspects of model performance.
               These phenomena all demonstrate the effectiveness of PCL in enhancing detection stability.
               We further visualize the stability of detections in terms of confidence, localization, extent, and heading, as shown in the following table.
-            </p>
+            </p> -->
 
-            <p style="text-align:center;" class="has-text-justified">
+            <!-- <p style="text-align:center;" class="has-text-justified">
               We further visualize the stability of detections in terms of confidence, localization, extent, and heading, as shown in the following table.
-            </p>
+            </p> -->
 
-            <table align="center" style="width: 90%;margin-bottom: 2%;">
+            <table align="center" style="width: 95%;margin-bottom: 2%;">
               <tr>
                 <td align="center">Confidence</td>
                 <td align="center">Localization</td>
