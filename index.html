@@ -39,8 +39,9 @@
             </div>
             <div>
                 <p>
-                    Jiabao Wang (王家宝) is a PhD student at <a href="https://en.nankai.edu.cn/">Nankai University</a>, advised by Prof. <a href="https://mmcheng.net/">Ming-Ming Cheng</a>. 
-                    His research interests include computer vision and deep learning, particularly focusing on 2D/3D perception.
+                    Jiabao Wang (王家宝) is a PhD student at <a href="https://en.nankai.edu.cn/">Nankai University</a>, advised by Prof. <a href="https://mmcheng.net/">Ming-Ming Cheng</a> and Prof. <a href='https://houqb.github.io/'>Qibin Hou</a>.
+                    His research interests include computer vision and deep learning, particularly focusing on 2D/3D/Oriented object detection, occupancy prediction and forecasting in autonomuos driving, <i>etc</i>.
+                    He is also currently learning the knowledge about image synthesis and generative models.
                 </p>
             </div>
         </div>
@@ -49,29 +50,43 @@
 
 <div class="content" style="padding-bottom: 64px;">
     <!-- News -->
+    <h2 class="noselect">Latest News</h2>
     <div id="news">
-        <h2 class="noselect">News</h2>
         <div class="news-container">
             <ul class="news-list noselect">
-                <li class="news-item">2024/07 -- One paper got accepted by ECCV 2024.</li>
-                <li class="news-item">2024/07 -- One paper got accepted by CVPR 2024.</li>
-                <li class="news-item">2024/07 -- This homepage is established!!!</li>
+                <li class="news-item">2024/09 -- Our paper (<b>OPUS: Occupancy Prediction Using a Sparse Set</b>) got accepted by NeurIPS 2024!</li>
+                <li class="news-item">2024/09 -- We release a initial version <a href="https://github.com/jbwang1997/OPUS">code</a> of OPUS, which is the first end-to-end occupancy network!</li>
+                <li class="news-item">2024/07 -- Our paper (<b>Towards Stable 3D Object Detection</b>) got accepted by ECCV 2024!</li>
+                <li class="news-item">2024/02 -- Our paper (<b>CrossKD: Cross-Head Knowledge Distillation for Object Detection</b>) got accepted by CVPR 2024!</li>
             </ul>
         </div>
     </div>
 
     <!-- Publications -->
-    <div id="publications">
-        <h2 class="noselect">Publications</h2>
-        <p>* Eauql contribution. # Corresponding author. Representative papers are <span style="background-color: #fff8df">highlighted</span>.</p>
-        <!-- <p>Papers sorted by recency. Representative papers are <span style="background-color: #fff8df">highlighted</span>.</p> -->
+    <h2 class="noselect">Publications</h2>
+    <p>* Eauql contribution. # Corresponding author.</p>
 
-        <div class="highlight publication row clearfix">
+    <div id="conference">
+        <h3 class="noselect">Conference</h3>
+
+        <div class="publication row clearfix">
+            <div class="row-media" style="background-image: url(assets/teaser/opus.png);"></div>
+            <div class="row-text">
+                <a class="publication-title bold" href="">OPUS: Occupancy Prediction Using a Sparse Set</a><br/>
+                <span class="bold">Jiabao Wang</span>*, Zhaojiang Liu*, Qiang Meng, Liujiang Yan,  Ke Wang, Jie Yang, Wei Liu, Qibin Hou#, Ming-Ming Cheng.<br/>
+                <span class="italic"><a href="https://neurips.cc/Conferences/2024">NeruIPS 2024 (CCF-A)</a></span> <img style="position: relative; top:6px;" src="https://img.shields.io/github/stars/jbwang1997/OPUS?label=%F0%9F%8C%9F%20Star&color=blue">&nbsp;<img style="position: relative; top:6px;" src="https://img.shields.io/github/forks/jbwang1997/OPUS?label=%F0%9F%94%A7%20Fork&color=green"><br/>
+                <a class="btn btn-red" href="https://arxiv.org/pdf/2409.09350">paper</a> /
+                <a class="btn btn-dark" href="https://github.com/jbwang1997/OPUS">code</a>
+            </div>
+        </div>
+
+        <!-- <div class="highlight publication row clearfix"> -->
+        <div class="publication row clearfix">
             <div class="row-media" style="background-image: url(assets/teaser/stability_index.jpg);"></div>
             <div class="row-text">
                 <a class="publication-title bold" href="">Towards Stable 3D Object Detection</a><br/>
                 <span class="bold">Jiabao Wang</span>*, Qiang Meng*, Guochao Liu, Liujiang Yan,  Ke Wang, Ming-Ming, Cheng, Qibin Hou#.<br/>
-                <span class="italic"><a href="https://eccv2024.ecva.net/">ECCV</a></span>, 2024 <img style="position: relative; top:6px;" src="https://img.shields.io/github/stars/jbwang1997/StabilityIndex?label=%F0%9F%8C%9F%20Star&color=blue">&nbsp;<img style="position: relative; top:6px;" src="https://img.shields.io/github/forks/jbwang1997/StabilityIndex?label=%F0%9F%94%A7%20Fork&color=green"><br/>
+                <span class="italic"><a href="https://eccv2024.ecva.net/">ECCV 2024 (CCF-B)</a></span> <img style="position: relative; top:6px;" src="https://img.shields.io/github/stars/jbwang1997/StabilityIndex?label=%F0%9F%8C%9F%20Star&color=blue">&nbsp;<img style="position: relative; top:6px;" src="https://img.shields.io/github/forks/jbwang1997/StabilityIndex?label=%F0%9F%94%A7%20Fork&color=green"><br/>
                 <a class="btn btn-red" href="https://jbwang1997.github.io/projects/stability_index/index.html">project</a> /
                 <a class="btn btn-red" href="https://arxiv.org/pdf/2407.04305">paper</a> /
                 <a class="btn btn-dark" href="https://github.com/jbwang1997/StabilityIndex">code</a> /
@@ -84,8 +99,44 @@
             <div class="row-text">
                 <a class="publication-title bold" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Wang_CrossKD_Cross-Head_Knowledge_Distillation_for_Object_Detection_CVPR_2024_paper.pdf">CrossKD: Cross-Head Knowledge Distillation for Object Detection</a><br/>
                 <span class="bold">Jiabao Wang</span>*, Yuming Chen*, Zhaohui Zheng, Xiang Li,  Ming-Ming Cheng, Qibin Hou#.<br/>
-                <span class="italic"><a href="https://cvpr2024.thecvf.com/">CVPR</a></span>, 2024 <img style="position: relative; top:6px;" src="https://img.shields.io/github/stars/jbwang1997/CrossKD?label=%F0%9F%8C%9F%20Star&color=blue">&nbsp;<img style="position: relative; top:6px;" src="https://img.shields.io/github/forks/jbwang1997/CrossKD?label=%F0%9F%94%A7%20Fork&color=green"><br/>
+                <span class="italic"><a href="https://cvpr2024.thecvf.com/">CVPR 2024 (CCF-A)</a></span> <img style="position: relative; top:6px;" src="https://img.shields.io/github/stars/jbwang1997/CrossKD?label=%F0%9F%8C%9F%20Star&color=blue">&nbsp;<img style="position: relative; top:6px;" src="https://img.shields.io/github/forks/jbwang1997/CrossKD?label=%F0%9F%94%A7%20Fork&color=green"><br/>
                 <a class="btn btn-red" href="https://openaccess.thecvf.com/content/CVPR2024/papers/Wang_CrossKD_Cross-Head_Knowledge_Distillation_for_Object_Detection_CVPR_2024_paper.pdf">paper</a> / <a class="btn btn-dark" href="https://github.com/jbwang1997/CrossKD">code</a> / <a class="btn btn-dark" href="bibtex/wang2024crosskd.html">bibtex</a>
+            </div>
+        </div>
+
+        <div class="publication row clearfix">
+        <!-- <div class="highlight publication row clearfix"> -->
+            <div class="row-media" style="background-image: url(assets/teaser/oriented_rcnn.png);"></div>
+            <div class="row-text">
+                <a class="publication-title bold" href="https://openaccess.thecvf.com/content/ICCV2021/papers/Xie_Oriented_R-CNN_for_Object_Detection_ICCV_2021_paper.pdf">Oriented R-CNN for Object Detection</a><br/>
+                Xingxing Xie, Gong Cheng#, <span class="bold">Jiabao Wang</span>, Xiwen Yao, Junwei Han.<br/>
+                <span class="italic"><a href="https://iccv2021.thecvf.com/">ICCV 2021 (CCF-A)</a></span> <img style="position: relative; top:6px;" src="https://img.shields.io/github/stars/jbwang1997/OBBDetection?label=%F0%9F%8C%9F%20Star&color=blue">&nbsp;<img style="position: relative; top:6px;" src="https://img.shields.io/github/forks/jbwang1997/OBBDetection?label=%F0%9F%94%A7%20Fork&color=green"><br/>
+                <a class="btn btn-red" href="https://openaccess.thecvf.com/content/ICCV2021/papers/Xie_Oriented_R-CNN_for_Object_Detection_ICCV_2021_paper.pdf">paper</a> / <a class="btn btn-dark" href="https://github.com/jbwang1997/OBBDetection">code</a> / <a class="btn btn-dark" href="bibtex/xie2021oriented.html">bibtex</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Journal -->
+    <div id="journal">
+        <h3 class="noselect">Journal</h3>
+
+        <div class="publication row clearfix">
+            <div class="row-media" style="background-image: url(assets/teaser/oriented_rcnn_beyond.png);"></div>
+            <div class="row-text">
+                <a class="publication-title bold" href="https://link.springer.com/article/10.1007/s11263-024-01989-w">Oriented R-CNN and Beyond</a><br/>
+                Xingxing Xie, Gong Cheng#, <span class="bold">Jiabao Wang</span>, Ke Li, Xiwen Yao, Junwei Han.<br/>
+                <span class="italic"><a href="https://link.springer.com/journal/11263">IJCV (SCI-I)</a></span> <img style="position: relative; top:6px;" src="https://img.shields.io/github/stars/jbwang1997/OBBDetection?label=%F0%9F%8C%9F%20Star&color=blue">&nbsp;<img style="position: relative; top:6px;" src="https://img.shields.io/github/forks/jbwang1997/OBBDetection?label=%F0%9F%94%A7%20Fork&color=green"><br/>
+                <a class="btn btn-red" href="https://link.springer.com/article/10.1007/s11263-024-01989-w">paper</a> / <a class="btn btn-dark" href="https://github.com/jbwang1997/OBBDetection">code</a> / <a class="btn btn-dark" href="bibtex/xie2021oriented.html">bibtex</a>
+            </div>
+        </div>
+
+        <div class="publication row clearfix">
+            <div class="row-media" style="background-image: url(assets/teaser/fcosf.png);"></div>
+            <div class="row-text">
+                <a class="publication-title bold" href="https://ieeexplore.ieee.org/document/10130561">Learning Orientation-Aware Distances for Oriented Object Detection</a><br/>
+                Chaofan Rao, <span class="bold">Jiabao Wang</span>, Gong Cheng, Xingxing Xie, Junwei Han.<br/>
+                <span class="italic"><a href="https://www.grss-ieee.org/publications/transactions-on-geoscience-remote-sensing/">TGRS (SCI-I)</a></span> <br/>
+                <a class="btn btn-red" href="https://ieeexplore.ieee.org/document/10130561">paper</a> / <a class="btn btn-dark" href="https://github.com/DDGRCF/FCOSF">code</a>
             </div>
         </div>
 
@@ -94,25 +145,52 @@
             <div class="row-text">
                 <a class="publication-title bold" href="https://arxiv.org/pdf/2110.01931">Anchor-Free Oriented Proposal Generator for Object Detection</a><br/>
                 Gong Cheng, <span class="bold">Jiabao Wang</span>, Ke Li, Xingxing Xie, Chunbo Lang, Yanqing Yao, Junwei Han.<br/>
-                <span class="italic"><a href="https://www.grss-ieee.org/publications/transactions-on-geoscience-remote-sensing/">TGRS</a></span>, 2022 <img style="position: relative; top:6px;" src="https://img.shields.io/github/stars/jbwang1997/AOPG?label=%F0%9F%8C%9F%20Star&color=blue">&nbsp;<img style="position: relative; top:6px;" src="https://img.shields.io/github/forks/jbwang1997/AOPG?label=%F0%9F%94%A7%20Fork&color=green"><br/>
+                <span class="italic"><a href="https://www.grss-ieee.org/publications/transactions-on-geoscience-remote-sensing/">TGRS (SCI-I)</a></span> <img style="position: relative; top:6px;" src="https://img.shields.io/github/stars/jbwang1997/AOPG?label=%F0%9F%8C%9F%20Star&color=blue">&nbsp;<img style="position: relative; top:6px;" src="https://img.shields.io/github/forks/jbwang1997/AOPG?label=%F0%9F%94%A7%20Fork&color=green"><br/>
                 <a class="btn btn-red" href="https://arxiv.org/pdf/2110.01931">paper</a> / <a class="btn btn-red" href="https://drive.google.com/drive/folders/1UdlgHk49iu6WpcJ5467iT-UqNPpx__CC">dataset</a> / <a class="btn btn-dark" href="https://github.com/jbwang1997/AOPG">code</a> / <a class="btn btn-dark" href="bibtex/cheng2022anchor.html">bibtex</a>
             </div>
         </div>
+    </div>
 
-        <div class="highlight publication row clearfix">
-            <div class="row-media" style="background-image: url(assets/teaser/oriented_rcnn.png);"></div>
-            <div class="row-text">
-                <a class="publication-title bold" href="https://openaccess.thecvf.com/content/ICCV2021/papers/Xie_Oriented_R-CNN_for_Object_Detection_ICCV_2021_paper.pdf">Oriented R-CNN for Object Detection</a><br/>
-                Xingxing Xie, Gong Cheng#, <span class="bold">Jiabao Wang</span>, Xiwen Yao, Junwei Han.<br/>
-                <span class="italic"><a href="https://iccv2021.thecvf.com/">ICCV</a></span>, 2021 <img style="position: relative; top:6px;" src="https://img.shields.io/github/stars/jbwang1997/OBBDetection?label=%F0%9F%8C%9F%20Star&color=blue">&nbsp;<img style="position: relative; top:6px;" src="https://img.shields.io/github/forks/jbwang1997/OBBDetection?label=%F0%9F%94%A7%20Fork&color=green"><br/>
-                <a class="btn btn-red" href="https://openaccess.thecvf.com/content/ICCV2021/papers/Xie_Oriented_R-CNN_for_Object_Detection_ICCV_2021_paper.pdf">paper</a> / <a class="btn btn-dark" href="https://github.com/jbwang1997/OBBDetection">code</a> / <a class="btn btn-dark" href="bibtex/xie2021oriented.html">bibtex</a>
+
+    <!-- Open Source -->
+    <h2 class="noselect">Open Source</h2>
+    <div id="opensource">
+
+    <p>He has participated as a core maintainer in following wonderful open source projects.</p>
+
+        <div class="timeline noselect">
+            <div class="timeline-item">
+                <table>
+                    <tr>
+                        <td class="icon">
+                            <a href="https://github.com/open-mmlab/mmdetection">
+                            <img src="assets/opensource/mmdet-logo.png" alt="MMDetection"></a><br>
+                        </td>
+                        <td class="description">
+                            <p style="font-size: 13px;">MMDetection is an open source object detection toolbox based on PyTorch. It is a part of the OpenMMLab project.</p>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="timeline-item">
+                <table>
+                    <tr>
+                        <td class="icon">
+                            <a href="https://openmmlab.com/">
+                            <img src="assets/opensource/mmrotate-logo.png" alt="MMRotate" width="55%"></a><br>
+                        </td>
+                        <td class="description">
+                            <p style="font-size: 13px;">MMRotate is an open-source toolbox for rotated object detection based on PyTorch. It is a part of the OpenMMLab project.</a>.</p>
+                        </td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
 
     <!-- Experience -->
+    <h2 class="noselect">Internship Experience</h2>
     <div id="experiences">
-        <h2 class="noselect">Experience</h2>
         <div class="timeline noselect">
             <div class="timeline-item">
                 <table>
@@ -124,7 +202,7 @@
                         </td>
                         <td class="description">
                             <h4><b>Research Scientist Intern</b></h4>
-                            <p style="font-size: 13px;">Worked with <a href="https://irvingmeng.github.io/">Qiang Meng</a>, where we worked on 3D perception.</p>
+                            <p style="font-size: 13px;">Worked with <a href="https://irvingmeng.github.io/">Qiang Meng</a>, where we worked on 3D perception in autonomous driving.</p>
                         </td>
                     </tr>
                 </table>
@@ -159,6 +237,11 @@
         </div>
     </div>
 
+    <h2 class="noselect">Academic Services</h2>
+    <div id="academic services">
+        <p>Reviewers for CVPR / NeurIPS / ICLR / AAAI </p>  
+    </div>
+
     <!-- Contact -->
     <div class="noselect">
         <a id="contact"></a>
@@ -175,6 +258,8 @@
         </div>
     </center>
 </div>
+
+
 
 <div class="footer noselect">
     <div class="footer-content">
